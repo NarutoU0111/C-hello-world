@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/NarutoU0111/C-hello-world.git']])
+            }
+        }
+        
+        stage('Compile') {
+            steps {
+                git branch: 'main', url: 'https://github.com/NarutoU0111/C-hello-world.git'
+                sh 'gcc -o Untitled2 Untitled2.cpp'
+            }
+        }
+        
+        
+        stage('OutPut_exp') {
+            steps {
+                git branch: 'main', url: 'https://github.com/NarutoU0111/C-hello-world.git'
+                sh './Untitled2'
+            }
+        }
+        
+    }
+}
